@@ -64,6 +64,34 @@ const frameIn = [
           auth: true,
           title: '会议室信息管理'
         }
+      },
+      // 员工信息管理
+      {
+        path: '/user',
+        name: 'user',
+        component: () => import('@/views/user/'),
+        meta: {
+          auth: true,
+          title: '员工信息管理'
+        }
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: () => import('@/views/order/'),
+        meta: {
+          auth: true,
+          title: '会议室订单信息'
+        }
+      },
+      {
+        path: '/change',
+        name: 'change',
+        component: () => import('@/views/change'),
+        meta: {
+          auth: true,
+          title: '会议室订单修改请求'
+        }
       }
     ]
   },

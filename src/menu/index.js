@@ -1,19 +1,19 @@
-// 插件
-import demoPlugins from './modules/demo-plugins'
-// 组件
-import demoComponents from './modules/demo-components'
-// 组件
-import demoCharts from './modules/demo-charts'
-// 组件库
-import demoElement from './modules/demo-element'
-// 试验台
-import demoPlayground from './modules/demo-playground'
-// 示例
-import demoBusiness from './modules/demo-business'
-// CRUD
-import demoD2Crud from './modules/demo-d2-crud'
-// 第三方网页
-import demoFrame from './modules/demo-frame'
+// // 插件
+// import demoPlugins from './modules/demo-plugins'
+// // 组件
+// import demoComponents from './modules/demo-components'
+// // 组件
+// import demoCharts from './modules/demo-charts'
+// // 组件库
+// import demoElement from './modules/demo-element'
+// // 试验台
+// import demoPlayground from './modules/demo-playground'
+// // 示例
+// import demoBusiness from './modules/demo-business'
+// // CRUD
+// import demoD2Crud from './modules/demo-d2-crud'
+// // 第三方网页
+// import demoFrame from './modules/demo-frame'
 
 // 菜单 侧边栏
 export const menuAside = [
@@ -22,17 +22,32 @@ export const menuAside = [
     title: '首页',
     icon: 'home'
   },
-  demoComponents,
-  demoPlugins,
-  demoCharts,
-  demoElement,
-  demoPlayground,
-  demoBusiness,
-  demoD2Crud,
-  demoFrame,
+  // demoComponents,
+  // demoPlugins,
+  // demoCharts,
+  // demoElement,
+  // demoPlayground,
+  // demoBusiness,
+  // demoD2Crud,
+  // demoFrame,
   {
     path: '/room',
     title: '会议室信息管理',
+    icon: 'table'
+  },
+  {
+    path: '/user',
+    title: '员工信息管理',
+    icon: 'table'
+  },
+  {
+    path: '/order',
+    title: '会议室订单信息',
+    icon: 'table'
+  },
+  {
+    path: '/change',
+    title: '会议室订单修改请求',
     icon: 'table'
   }
 ]
