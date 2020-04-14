@@ -54,6 +54,16 @@ const frameIn = [
         name: 'redirect',
         hidden: true,
         component: _import('system/function/redirect')
+      },
+      // 会议室信息管理
+      {
+        path: '/room',
+        name: 'room',
+        component: () => import('@/views/room/'),
+        meta: {
+          auth: true,
+          title: '会议室信息管理'
+        }
       }
     ]
   },
