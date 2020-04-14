@@ -10,6 +10,7 @@
       :form-options="formOptions"
       :pagination="pagination"
       :loading="loading"
+
       @pagination-current-change="paginationCurrentChange"
       @dialog-open="handleDialogOpen"
       @row-add="handleRowAdd"
@@ -75,7 +76,35 @@ export default {
           microphone: '1',
           computer: '1',
           number: '100',
-          state: '30'
+          state: '30',
+          forbidRemove: false,
+          showRemoveButton: true
+        },
+        {
+          roomid: '1',
+          address: '1-101',
+          table: '100',
+          chair: '100',
+          project: '1',
+          microphone: '1',
+          computer: '1',
+          number: '100',
+          state: '30',
+          forbidRemove: false,
+          showRemoveButton: true
+        },
+        {
+          roomid: '1',
+          address: '1-101',
+          table: '100',
+          chair: '100',
+          project: '1',
+          microphone: '1',
+          computer: '1',
+          number: '100',
+          state: '30',
+          forbidRemove: false,
+          showRemoveButton: true
         }
       ],
       addTemplate: {
@@ -149,7 +178,6 @@ export default {
           message: '保存成功',
           type: 'success'
         })
-
         // done可以传入一个对象来修改提交的某个字段
         done({
           address: '我是通过done事件传入的数据！'
@@ -181,7 +209,41 @@ export default {
     //     console.log('err', err)
     //     this.loading = false
     //   })
-    // }
+    // },
+  },
+  rowHandle: {
+    remove: {
+      icon: 'el-icon-delete',
+      size: 'small',
+      fixed: 'right',
+      confirm: true,
+      show (index, row) {
+        if (row.showRemoveButton) {
+          return true
+        }
+        return false
+      },
+      disabled (index, row) {
+        if (row.forbidRemove) {
+          return true
+        }
+        return false
+      }
+    }
+  },
+  // eslint-disable-next-line no-dupe-keys
+  methods: {
+    handleRowRemove ({ index, row }, done) {
+      setTimeout(() => {
+        console.log(index)
+        console.log(row)
+        this.$message({
+          message: '删除成功',
+          type: 'success'
+        })
+        done()
+      }, 300)
+    }
   }
 }
 </script>

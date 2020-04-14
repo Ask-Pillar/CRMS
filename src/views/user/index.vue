@@ -13,7 +13,9 @@
       @pagination-current-change="paginationCurrentChange"
       @dialog-open="handleDialogOpen"
       @row-add="handleRowAdd"
-      @dialog-cancel="handleDialogCancel">
+      @dialog-cancel="handleDialogCancel"
+      :rowHandle="rowHandle"
+      @row-remove="handleRowRemove">
       <el-button slot="header" style="margin-bottom: 5px" @click="addRow"><i class="fa fa-plus" aria-hidden="true"></i> 新增</el-button>
       <el-input slot="header" style="margin-bottom: 5px" placeholder="会议室编号" suffix-icon="el-icon-search"> </el-input>
       <el-button slot="header" style="margin-bottom: 5px"><i class="el-icon-search"></i> 搜索</el-button>
@@ -75,7 +77,35 @@ export default {
           microphone: '1',
           computer: '1',
           number: '100',
-          state: '30'
+          state: '30',
+          forbidRemove: true,
+          showRemoveButton: true
+        },
+        {
+          roomid: '1',
+          address: '1-101',
+          table: '100',
+          chair: '100',
+          project: '1',
+          microphone: '1',
+          computer: '1',
+          number: '100',
+          state: '30',
+          forbidRemove: true,
+          showRemoveButton: true
+        },
+        {
+          roomid: '1',
+          address: '1-101',
+          table: '100',
+          chair: '100',
+          project: '1',
+          microphone: '1',
+          computer: '1',
+          number: '100',
+          state: '30',
+          forbidRemove: true,
+          showRemoveButton: true
         }
       ],
       addTemplate: {
@@ -167,7 +197,7 @@ export default {
     paginationCurrentChange (currentPage) {
       this.pagination.currentPage = currentPage
       this.fetchData()
-    }
+    },
     // fetchData () {
     //   this.loading = true
     //   // eslint-disable-next-line no-undef
@@ -182,6 +212,39 @@ export default {
     //     this.loading = false
     //   })
     // }
+    rowHandle: {
+      remove: {
+        icon: 'el-icon-delete',
+        size: 'small',
+        fixed: 'right',
+        confirm: true,
+        show (index, row) {
+          if (row.showRemoveButton) {
+            return true
+          }
+          return false
+        },
+        disabled (index, row) {
+          if (row.forbidRemove) {
+            return true
+          }
+          return false
+        }
+      }
+    },
+    methods: {
+      handleRowRemove ({ index, row }, done) {
+        setTimeout(() => {
+          console.log(index)
+          console.log(row)
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          done()
+        }, 300)
+      }
+    }
   }
 }
 </script>
