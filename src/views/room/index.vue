@@ -10,11 +10,12 @@
       :form-options="formOptions"
       :pagination="pagination"
       :loading="loading"
-
       @pagination-current-change="paginationCurrentChange"
       @dialog-open="handleDialogOpen"
       @row-add="handleRowAdd"
-      @dialog-cancel="handleDialogCancel">
+      @dialog-cancel="handleDialogCancel"
+      :rowHandle="rowHandle"
+      @row-remove="handleRowRemove">
       <el-button slot="header" style="margin-bottom: 5px" @click="addRow"><i class="fa fa-plus" aria-hidden="true"></i> 新增</el-button>
       <el-input slot="header" style="margin-bottom: 5px" placeholder="会议室编号" suffix-icon="el-icon-search"> </el-input>
       <el-button slot="header" style="margin-bottom: 5px"><i class="el-icon-search"></i> 搜索</el-button>
@@ -24,7 +25,8 @@
 </template>
 
 <script>
-// import { BusinessTable1List } from '@api/demo.business.table.1'
+// eslint-disable-next-line no-unused-vars
+import { RoomList } from '@/api/room'
 export default {
   data () {
     return {
@@ -66,47 +68,6 @@ export default {
           key: 'state'
         }
       ],
-      data: [
-        {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
-          forbidRemove: false,
-          showRemoveButton: true
-        },
-        {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
-          forbidRemove: false,
-          showRemoveButton: true
-        },
-        {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
-          forbidRemove: false,
-          showRemoveButton: true
-        }
-      ],
       addTemplate: {
         address: {
           title: '地点',
@@ -117,28 +78,28 @@ export default {
           value: '10'
         },
         chair: {
-          title: '地点',
-          value: '6-202'
+          title: '椅子',
+          value: '20'
         },
         project: {
-          title: '地点',
-          value: '6-202'
+          title: '投影仪',
+          value: '1'
         },
         microphone: {
-          title: '地点',
-          value: '6-202'
+          title: '麦克风',
+          value: '1'
         },
         computer: {
-          title: '地点',
-          value: '6-202'
+          title: '电脑',
+          value: '1'
         },
         number: {
-          title: '地点',
-          value: '6-202'
+          title: '人数',
+          value: '20'
         },
         state: {
-          title: '地点',
-          value: '6-202'
+          title: '状态',
+          value: '20'
         }
       },
       formOptions: {
@@ -151,6 +112,26 @@ export default {
         currentPage: 1,
         pageSize: 5,
         total: 100
+      },
+      rowHandle: {
+        remove: {
+          icon: 'el-icon-delete',
+          size: 'small',
+          fixed: 'right',
+          confirm: true,
+          show (index, row) {
+            if (row.showRemoveButton) {
+              return true
+            }
+            return false
+          },
+          disabled (index, row) {
+            if (row.forbidRemove) {
+              return true
+            }
+            return false
+          }
+        }
       }
     }
   },
@@ -178,9 +159,12 @@ export default {
           message: '保存成功',
           type: 'success'
         })
+
         // done可以传入一个对象来修改提交的某个字段
         done({
-          address: '我是通过done事件传入的数据！'
+          roomid: '2',
+          forbidRemove: false,
+          showRemoveButton: true
         })
         this.formOptions.saveLoading = false
       }, 300)
@@ -195,54 +179,19 @@ export default {
     paginationCurrentChange (currentPage) {
       this.pagination.currentPage = currentPage
       this.fetchData()
-    }
-    // fetchData () {
-    //   this.loading = true
-    //   // eslint-disable-next-line no-undef
-    //   BusinessTable1List({
-    //     ...this.pagination
-    //   }).then(res => {
-    //     this.data = res.list
-    //     this.pagination.total = res.page.total
-    //     this.loading = false
-    //   }).catch(err => {
-    //     console.log('err', err)
-    //     this.loading = false
-    //   })
-    // },
-  },
-  rowHandle: {
-    remove: {
-      icon: 'el-icon-delete',
-      size: 'small',
-      fixed: 'right',
-      confirm: true,
-      show (index, row) {
-        if (row.showRemoveButton) {
-          return true
-        }
-        return false
-      },
-      disabled (index, row) {
-        if (row.forbidRemove) {
-          return true
-        }
-        return false
+    },
+    methods: {
+      handleRowRemove ({ index, row }, done) {
+        setTimeout(() => {
+          console.log(index)
+          console.log(row)
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          done()
+        }, 300)
       }
-    }
-  },
-  // eslint-disable-next-line no-dupe-keys
-  methods: {
-    handleRowRemove ({ index, row }, done) {
-      setTimeout(() => {
-        console.log(index)
-        console.log(row)
-        this.$message({
-          message: '删除成功',
-          type: 'success'
-        })
-        done()
-      }, 300)
     }
   }
 }
