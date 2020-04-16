@@ -34,82 +34,85 @@ export default {
     return {
       columns: [
         {
-          title: '会议室编号',
-          key: 'roomid'
+          title: '员工编号',
+          key: 'userid'
         },
         {
-          title: '会议地址',
-          key: 'address'
+          title: '员工姓名',
+          key: 'username'
         },
         {
-          title: '桌子',
-          key: 'table'
+          title: '员工手机号',
+          key: 'usersex'
         },
         {
-          title: '椅子',
-          key: 'chair'
+          title: '员工权限',
+          key: 'userpower'
         },
         {
-          title: '投影仪',
-          key: 'project'
+          title: '部门',
+          key: 'userclass'
         },
         {
-          title: '麦克风',
-          key: 'microphone'
+          title: '职位',
+          key: 'userrole'
         },
         {
-          title: '电脑',
-          key: 'computer'
+          title: '入职时间',
+          key: 'addtime'
         },
         {
-          title: '人数',
-          key: 'number'
+          title: '离职时间',
+          key: 'endtime'
         },
         {
           title: '状态',
-          key: 'state'
+          key: 'userstate'
         }
       ],
       data: [
         {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
+          userid: '1',
+          username: '张三',
+          userphone: '17781547799',
+          usersex: '男',
+          userpower: '可用50人会议室',
+          userclass: '开发部',
+          userrole: '项目经理',
+          addtime: '2019年8月20日',
+          endtime: '',
+          userstate: '在职',
           forbidRemove: false,
           showRemoveButton: true
         },
         {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
+          userid: '2',
+          username: '李四',
+          userphone: '17980507799',
+          usersex: '男',
+          userpower: '可用15人会议室',
+          userclass: '开发部',
+          userrole: '客户经理',
+          addtime: '2018年10月20日',
+          endtime: '',
+          userstate: '在职',
           forbidRemove: false,
           showRemoveButton: true
         },
         {
-          roomid: '1',
-          address: '1-101',
-          table: '100',
-          chair: '100',
-          project: '1',
-          microphone: '1',
-          computer: '1',
-          number: '100',
-          state: '30',
+          userid: '3',
+          username: '王五',
+          userphone: '17980007474',
+          usersex: '男',
+          userpower: '可用10人会议室',
+          userclass: '开发部',
+          userrole: '开发部项目组长',
+          addtime: '2018年10月20日',
+          endtime: '',
+          userstate: '在职',
           forbidRemove: false,
           showRemoveButton: true
-        }
+        },
       ],
       addTemplate: {
         address: {
@@ -142,7 +145,7 @@ export default {
         },
         state: {
           title: '状态',
-          value: '20'
+          value: '可用'
         }
       },
       editTemplate: {
