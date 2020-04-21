@@ -112,7 +112,7 @@ export default {
           userstate: '在职',
           forbidRemove: false,
           showRemoveButton: true
-        },
+        }
       ],
       addTemplate: {
         address: {
